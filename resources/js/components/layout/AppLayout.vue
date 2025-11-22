@@ -3,28 +3,24 @@ import Sidebar from './Sidebar.vue';
 </script>
 
 <template>
-    <div class="dashboard">
+    <div class="container">
         <Sidebar></Sidebar>
 
-        <main class="content">
+        <main class="main-content">
             <slot />
         </main>
     </div>
 </template>
 
 <style scoped>
-.dashboard {
+.container {
     display: flex;
-    height: 100vh;
-    font-family: sans-serif;
-    background: var(--bg-color-body);
+    min-height: 100vh;
 }
 
-.content {
+.main-content {
     flex: 1;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+    margin-left: 260px;
+    padding: 2rem;
 }
 </style>
