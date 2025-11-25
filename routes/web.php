@@ -1,9 +1,8 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
-use function Pest\Laravel\json;
 
 Route::get('/', function(){
     return Inertia::render('Dashboard');
@@ -25,11 +24,7 @@ Route::get('/equipe', function(){
     return Inertia::render('Team');
 });
 
-Route::get('/configuracoes', function(){
-    return Inertia::render('Config');
-});
-
-Route::get('/data', function(){
+Route::get('/sensors', function(){
     return response()->json([
         "temperature" => rand(10,80),
         "humidity" => rand(10,80),
@@ -37,5 +32,12 @@ Route::get('/data', function(){
         "light" => rand(10,80),
         "soil" => rand(10,80),
         "water" => rand(10,80)
+    ]);
+});
+
+Route::get('/actuator', function (Request $request){
+    return response()->json([
+        "status" => true,
+        "cmd" => $request->get('cmd')
     ]);
 });

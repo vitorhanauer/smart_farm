@@ -35,10 +35,10 @@ function setActive(path) {
                 <Users />
                 <a href="/equipe">Equipe</a>
             </div>
-            <div class="menu-item" :class="setActive('/configuracoes')">
+            <!-- <div class="menu-item" :class="setActive('/configuracoes')">
                 <Settings />
                 <a href="/configuracoes">Configurações</a>
-            </div>
+            </div> -->
             <div class="menu-item logout">
                 <LogOut />
                 <span>Sair</span>

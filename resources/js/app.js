@@ -4,7 +4,6 @@ import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'; 
 import { TroisJSVuePlugin } from 'troisjs';
 
-
 let app = createInertiaApp({
   resolve: name => {
     const pages = import.meta.glob('./pages/**/*.vue', { eager: true })
@@ -16,4 +15,3 @@ let app = createInertiaApp({
     .mount(el)
   },
 })
-app.use(TroisJSVuePlugin);

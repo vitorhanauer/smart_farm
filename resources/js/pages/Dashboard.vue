@@ -6,25 +6,40 @@ import ChartGrid from "../components/layout/ChartGrid.vue";
 import StatsGrid from "../components/stats/StatGrid.vue";
 import StatCard from "../components/stats/StatCard.vue";
 import { onMounted, ref } from 'vue';
+import { usePage } from '@inertiajs/vue3'
+
+const page = usePage()
+
+const ESP32_IP = page.props.espIp;
+
+const interval = ref(null);
+const time = ref(10000);
+let data = ref(Object);
 
 async function updateSensors() {
   try {
-    const res = await fetch('http://localhost:8000/data');
+    const res = await fetch(`${ESP32_IP}/sensors`);
     const data = await res.json();
     return data;
   } catch (error) {
   }
 }
 
-let data = ref(Object);
-
 onMounted(async () => {
   data.value =  await updateSensors();
   
-  setInterval(async () => {
+  interval.value = setInterval(async () => {
     data.value = await updateSensors();
-  }, 10000)
+  }, time.value)
+
 })
+
+function changeTime(payload){
+  clearInterval(interval.value);
+  interval.value = setInterval(async () => {
+    data.value = await updateSensors();
+  }, payload)
+}
 </script>
 
 <template>
@@ -40,7 +55,7 @@ onMounted(async () => {
       <StatCard title="Agua" :value="data.water" unit="%" :icon="Droplet"></StatCard>
     </StatsGrid>
 
-    <ChartGrid></ChartGrid>
+    <ChartGrid v-on:update-time="changeTime"></ChartGrid>
   </AppLayout>
 </template>
 
