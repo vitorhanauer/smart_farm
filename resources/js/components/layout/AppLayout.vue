@@ -19,6 +19,7 @@ import Sidebar from './Sidebar.vue';
 }
 
 .main-content {
+    background-color: #d3edf0;
     flex: 1;
     margin-left: 260px;
     padding: 2rem;

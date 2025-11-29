@@ -4,6 +4,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+Route::get('/entrar', function(){
+    return Inertia::render('SignIn');
+});
+
+Route::get('/cadastrar', function(){
+    return Inertia::render('SignUp');
+});
+
 Route::get('/', function(){
     return Inertia::render('Dashboard');
 });
