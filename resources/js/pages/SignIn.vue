@@ -2,6 +2,7 @@
 import Input from '../components/sign/Input.vue';
 import Button from '../components/sign/Button.vue';
 import AccountButton from '../components/sign/AccountButton.vue'; 
+import { Form } from '@inertiajs/vue3';
 </script>
 
 <template>
@@ -10,9 +11,11 @@ import AccountButton from '../components/sign/AccountButton.vue';
         <h1>Bem-vindo</h1>
         <p class="subtitle">Entre para cuidar das suas plantas</p>
 
-        <Input icon="👤" placeholder=" Nome Completo" />
-        <Input icon="🔒" placeholder=" Senha" />
-        <Button>Entrar</Button>
+        <Form method="POST">
+            <Input icon="👤" placeholder=" Email" inputName="email" inputType="email" :inputRequired="true"/>
+            <Input icon="🔒" placeholder=" Senha" inputName="password" inputType="password" :inputRequired="true"/>
+            <Button>Entrar</Button>
+        </Form>
 
         <div class="divider">
             <hr>

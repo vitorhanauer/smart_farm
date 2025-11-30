@@ -1,6 +1,6 @@
 <template>
   <p class="pinput">{{ placeholder }}:</p>
-  <input :placeholder="icon + '  ' + placeholder"/>
+  <input :placeholder="icon + '  ' + placeholder" :name="inputName" :type="inputType" :required="inputRequired"/>
 </template>
 
 <script>
@@ -14,6 +14,18 @@ export default {
     icon: {
       type: String,
       default: ''
+    },
+    inputName: {
+      type: String,
+      default: ''
+    },
+    inputType: {
+      type: String,
+      default: ''
+    },
+    inputRequired: {
+      type: Boolean,
+      default: false
     }
   }
 }

@@ -1,5 +1,7 @@
 <script setup>
+import { Form } from '@inertiajs/vue3';
 import { History, LayoutDashboard, LogOut, Settings, SunSnow, Tractor, Users } from 'lucide-vue-next';
+import Button from '../sign/Button.vue';
 const url = window.location.pathname;
 
 function setActive(path) {
@@ -11,6 +13,7 @@ function setActive(path) {
 <template>
     <div class="sidebar">
         <div class="sidebar-header">
+            <img src="/public/logo.png" alt="">
             <h2>IoT Monitor</h2>
             <p>Sistema de Monitoramento</p>
         </div>
@@ -41,7 +44,9 @@ function setActive(path) {
             </div> -->
             <div class="menu-item logout">
                 <LogOut />
-                <span>Sair</span>
+                <Form method="post" action="/sair">
+                    <button class="btn-exit">Sair</button>
+                </Form>
             </div>
         </nav>
     </div>
@@ -52,18 +57,29 @@ function setActive(path) {
     width: 260px;
     background: linear-gradient(180deg, #1B9AAA 0%, #158a99 100%);
     color: white;
-    padding: 2rem 0;
     box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
     position: fixed;
+    padding: 24px 0px;
     height: 100vh;
     overflow-y: auto;
     z-index: 1000;
 }
 
 .sidebar-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 0 1.5rem 2rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     margin-bottom: 2rem;
+}
+
+.sidebar-header img{
+    background-color: white;
+    border-radius: 50px;
+    margin: auto;
+    width: 75px;
+    height: 75px;
 }
 
 .sidebar-header h2 {
@@ -73,7 +89,6 @@ function setActive(path) {
 .sidebar-header p {
     font-size: 0.875rem;
     opacity: 0.8;
-    margin-top: 0.5rem;
 }
 
 .menu-item {
@@ -103,8 +118,15 @@ function setActive(path) {
 }
 
 .menu-item.logout {
-    margin-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
-    padding-top: 2rem;
+}
+
+.btn-exit{
+    background-color: transparent;
+    color: white;
+    font-family: var(--font-family);
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
 }
 </style>
