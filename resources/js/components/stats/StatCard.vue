@@ -14,7 +14,6 @@ watch(
     () => props.value,
     (newValue, oldValue = newValue) => {
         percentage.value = Number(newValue) - Number(oldValue);
-        console.log(percentage.value);
     }
 );
 

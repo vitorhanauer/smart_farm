@@ -5,7 +5,7 @@ import AppLayout from "../components/layout/AppLayout.vue"
 import ChartGrid from "../components/layout/ChartGrid.vue";
 import StatsGrid from "../components/stats/StatGrid.vue";
 import StatCard from "../components/stats/StatCard.vue";
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { usePage } from '@inertiajs/vue3'
 
 const page = usePage()
@@ -26,15 +26,11 @@ async function updateSensors() {
 }
 
 onMounted(async () => {
-  data.value =  await updateSensors();
-  
-  interval.value = setInterval(async () => {
-    data.value = await updateSensors();
-  }, time.value)
-
+  data.value = await updateSensors();
+  changeTime(time.value);
 })
 
-function changeTime(payload){
+function changeTime(payload) {
   clearInterval(interval.value);
   interval.value = setInterval(async () => {
     data.value = await updateSensors();
@@ -55,7 +51,8 @@ function changeTime(payload){
       <StatCard title="Agua" :value="data.water" unit="%" :icon="Droplet"></StatCard>
     </StatsGrid>
 
-    <ChartGrid v-on:update-time="changeTime"></ChartGrid>
+    <ChartGrid v-on:update-time="changeTime" :temperature="data.temperature" :humidity="data.humidity"
+      :steam="data.steam" :light="data.light" :soil="data.soil" :water="data.water"></ChartGrid>
   </AppLayout>
 </template>
 

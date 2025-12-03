@@ -2,6 +2,7 @@
 import { usePage } from '@inertiajs/vue3'
 import Model3d from '../Model3d.vue';
 import { ref, watch } from 'vue';
+import Chart from '../chart/Chart.vue';
 const page = usePage()
 const ESP32_IP = page.props.espIp;
 
@@ -17,9 +18,18 @@ async function sendCmd(cmd) {
 }
 
 const emit = defineEmits(['update-time']);
-watch(time,(newValue) => {
+watch(time, (newValue) => {
     emit('update-time', newValue);
 })
+
+const props = defineProps({
+   temperature: null,
+   humidity: null,
+   steam: null,
+   light: null,
+   soil: null,
+   water: null,
+});
 </script>
 
 <template>
@@ -56,8 +66,8 @@ watch(time,(newValue) => {
                 </div>
             </div>
             <div class="chart-placeholder">
-                <p>Área reservada para gráfico de linhas</p>
-                <p style="font-size: 0.875rem; opacity: 0.7;">Gráfico será renderizado aqui</p>
+                <Chart :temperature="temperature" :humidity="humidity"
+      :steam="steam" :light="light" :soil="soil" :water="water"/>
             </div>
         </div>
 
@@ -103,14 +113,14 @@ watch(time,(newValue) => {
     color: #1B9AAA;
 }
 
-.button-list{
+.button-list {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-.button-list button{
+.button-list button {
     background-color: #1B9AAA;
     width: 100%;
     color: white;
@@ -123,7 +133,7 @@ watch(time,(newValue) => {
     transition: transform 0.5s;
 }
 
-.button-list button:hover{
+.button-list button:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(27, 154, 170, 0.2);
 }
@@ -155,7 +165,7 @@ watch(time,(newValue) => {
 }
 
 .chart-placeholder {
-    height: 300px;
+    height: 400px;
     background: linear-gradient(135deg, #d3edf0 0%, #A0E3EA 100%);
     border-radius: 8px;
     display: flex;
