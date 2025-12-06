@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Requests\SignUpRequest;
+use App\Models\Sensor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,7 +44,7 @@ Route::middleware(AuthMiddleware::class)->group(function () {
     })->name('dashboard');
 
     Route::get('/sensores', function () {
-        return Inertia::render('Sensor');
+        return Inertia::render('Sensor')->with('datas', Sensor::orderBy('created_at','desc')->get());
     })->name('sensors');;
 
     Route::get('/atuadores', function () {
