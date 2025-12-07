@@ -16,7 +16,7 @@ function setActive(path) {
 <template>
     <div class="sidebar">
         <div class="sidebar-header">
-            <img src="/public/logo.png" alt="">
+            <img src="/public/logo_sem_fundo.png" alt="">
             <h2>IoT Monitor</h2>
             <p>Sistema de Monitoramento</p>
         </div>
@@ -33,18 +33,10 @@ function setActive(path) {
                 <Tractor />
                 <a href="/atuadores">Atuadores</a>
             </div>
-            <div v-if="user.role == 'teacher'" class="menu-item" :class="setActive('/historico')">
-                <History />
-                <a href="/historico">Histórico</a>
-            </div>
             <div v-if="user.role == 'teacher'" class="menu-item" :class="setActive('/equipe')">
                 <Users />
                 <a href="/equipe">Equipe</a>
             </div>
-            <!-- <div class="menu-item" :class="setActive('/configuracoes')">
-                <Settings />
-                <a href="/configuracoes">Configurações</a>
-            </div> -->
             <div class="menu-item logout">
                 <LogOut />
                 <Form method="post" action="/sair">
@@ -79,10 +71,10 @@ function setActive(path) {
 
 .sidebar-header img{
     background-color: white;
-    border-radius: 50px;
+    border-radius: 25px;
     margin: auto;
-    width: 75px;
-    height: 75px;
+    width: 125px;
+    height: 125px;
 }
 
 .sidebar-header h2 {

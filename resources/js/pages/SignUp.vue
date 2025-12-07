@@ -8,7 +8,7 @@ import { Form } from '@inertiajs/vue3';
 
 <template>
     <div class="container">
-        <div class="planta"><img src="/public/logo.png" alt=""></div>
+        <div class="planta"><img src="/public/logo_fundo_azul.png" alt=""></div>
         <h1>Bem-vindo</h1>
         <p class="subtitle">Entre para cuidar das suas plantas</p>
 
@@ -74,15 +74,13 @@ h1 {
 }
 
 .planta {
-    width: 100px;
-    height: 100px;
-    border-radius: 25px;
-    background-color: var(--text-color-light);
-    color: #cafaff;
+    width: 125px;
+    height: 125px;
     margin: 25px 0px;
 }
 
 .planta img{
+    border-radius: 25px;
     width: 100%;
     height: 100%;
 }

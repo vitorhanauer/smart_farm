@@ -53,10 +53,6 @@ Route::middleware(AuthMiddleware::class)->group(function () {
             return Inertia::render('Actuator');
         })->name('actuators');;
     
-        Route::get('/historico', function () {
-            return Inertia::render('History');
-        })->name('historic');;
-    
         Route::get('/equipe', function () {
             return Inertia::render('Team');
         })->name('team');;
