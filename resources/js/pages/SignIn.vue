@@ -31,7 +31,7 @@ import { Form } from '@inertiajs/vue3';
         </div>
 
         <p class="login">Não tem uma conta?
-            <a href="#" style="color: var(--text-color-dark); font-weight: bold;">Cadastre-se</a>
+            <a href="/cadastrar" style="color: var(--text-color-dark); font-weight: bold;">Cadastre-se</a>
         </p>
     </div>
 </template>

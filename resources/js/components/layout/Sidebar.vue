@@ -1,8 +1,11 @@
 <script setup>
 import { Form } from '@inertiajs/vue3';
 import { History, LayoutDashboard, LogOut, Settings, SunSnow, Tractor, Users } from 'lucide-vue-next';
-import Button from '../sign/Button.vue';
 const url = window.location.pathname;
+
+import { usePage } from '@inertiajs/vue3'
+const page = usePage()
+const user = page.props.auth.user
 
 function setActive(path) {
     return url == path ? 'active' : '';
@@ -22,19 +25,19 @@ function setActive(path) {
                 <LayoutDashboard />
                 <a href="/">Dashboard</a>
             </div>
-            <div class="menu-item" :class="setActive('/sensores')">
+            <div v-if="user.role == 'teacher'" class="menu-item" :class="setActive('/sensores')">
                 <SunSnow />
                 <a href="/sensores">Sensores</a>
             </div>
-            <div class="menu-item" :class="setActive('/atuadores')">
+            <div v-if="user.role == 'teacher'" class="menu-item" :class="setActive('/atuadores')">
                 <Tractor />
                 <a href="/atuadores">Atuadores</a>
             </div>
-            <div class="menu-item" :class="setActive('/historico')">
+            <div v-if="user.role == 'teacher'" class="menu-item" :class="setActive('/historico')">
                 <History />
                 <a href="/historico">Histórico</a>
             </div>
-            <div class="menu-item" :class="setActive('/equipe')">
+            <div v-if="user.role == 'teacher'" class="menu-item" :class="setActive('/equipe')">
                 <Users />
                 <a href="/equipe">Equipe</a>
             </div>

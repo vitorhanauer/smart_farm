@@ -1,5 +1,6 @@
 <script setup>
 import Input from '../components/sign/Input.vue';
+import Select from '../components/sign/Select.vue';
 import Button from '../components/sign/Button.vue';
 import AccountButton from '../components/sign/AccountButton.vue'; 
 import { Form } from '@inertiajs/vue3';
@@ -11,10 +12,11 @@ import { Form } from '@inertiajs/vue3';
         <h1>Bem-vindo</h1>
         <p class="subtitle">Entre para cuidar das suas plantas</p>
 
-        <Form method="post" action="/cadastrar">
+        <Form method="post" action="/cadastrar" style="width: 100%;">
             <Input icon="👤" placeholder=" Nome Completo" inputName="name" inputType="text" :inputRequired="true"/>
             <Input icon="📧" placeholder=" E-mail" inputName="email" inputType="email" :inputRequired="true"/>
             <Input icon="🔒" placeholder=" Senha" inputName="password" inputType="password" :inputRequired="true"/>
+            <Select />
             <Button>Criar conta</Button>
         </Form>
 
@@ -32,7 +34,7 @@ import { Form } from '@inertiajs/vue3';
         </div>
 
         <p class="login">Já tem uma conta?
-            <a href="#" style="color: var(--text-color-dark); font-weight: bold;">Entrar</a>
+            <a href="/entrar" style="color: var(--text-color-dark); font-weight: bold;">Entrar</a>
         </p>
     </div>
 </template>

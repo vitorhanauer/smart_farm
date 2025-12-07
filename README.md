@@ -23,6 +23,7 @@ Copie o arquivo .env.example para .env e configure corretamente o IP da Smart Fa
 ```
 php artisan key:generate
 php artisan migrate --seed
+php artisan schedule:work
 composer run dev
 ```
 

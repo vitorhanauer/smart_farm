@@ -37,6 +37,9 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'espIp' => env('ESP32_IP'),
+            'auth' => [
+                'user' => fn() => $request->user(),
+            ],
         ]);
     }
 }
