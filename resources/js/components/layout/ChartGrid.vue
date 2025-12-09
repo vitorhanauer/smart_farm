@@ -3,6 +3,10 @@ import { usePage } from '@inertiajs/vue3'
 import Model3d from '../Model3d.vue';
 import { ref, watch } from 'vue';
 import Chart from '../chart/Chart.vue';
+import Card from '../cards/Card.vue';
+import CardHeader  from '../cards/CardHeader.vue';
+import CardTitle  from '../cards/CardTitle.vue';
+import Grid from '../grids/Grid_1_3_2.vue';
 const page = usePage()
 const ESP32_IP = page.props.espIp;
 
@@ -23,96 +27,60 @@ watch(time, (newValue) => {
 })
 
 const props = defineProps({
-   temperature: null,
-   humidity: null,
-   steam: null,
-   light: null,
-   soil: null,
-   water: null,
+    temperature: null,
+    humidity: null,
+    steam: null,
+    light: null,
+    soil: null,
+    water: null,
 });
 </script>
 
 <template>
-    <div class="charts-grid">
-        <!-- Command Buttons -->
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">
-                    Ações
+    <Grid>
+            <!-- Command Buttons -->
+            <Card>
+                <CardHeader>
+                    <CardTitle>Ações</CardTitle>
+                </CardHeader>
+                <div>
+                    <ul class="button-list">
+                        <li><button @click="sendCmd('LED')">LED</button></li>
+                        <li><button @click="sendCmd('FAN')">Ventilador</button></li>
+                        <li><button @click="sendCmd('FEED')">Alimentar</button></li>
+                        <li><button @click="sendCmd('WATER')">Regar</button></li>
+                    </ul>
                 </div>
-            </div>
-            <div>
-                <ul class="button-list">
-                    <li><button @click="sendCmd('LED')">LED</button></li>
-                    <li><button @click="sendCmd('FAN')">Ventilador</button></li>
-                    <li><button @click="sendCmd('FEED')">Alimentar</button></li>
-                    <li><button @click="sendCmd('WATER')">Regar</button></li>
-                </ul>
-            </div>
-        </div>
-
-
-        <!-- Line Chart Placeholder -->
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">
-                    Histórico de Sensores
+            </Card>
+            <!-- Line Chart Placeholder -->
+            <Card>
+                <CardHeader>
+                    <CardTitle>Histórico de Sensores</CardTitle>
+                    <div class="time-selector">
+                        <button class="time-btn" :class="time == 1000 ? 'active' : ''" @click="time = 1000">1s</button>
+                        <button class="time-btn" :class="time == 5000 ? 'active' : ''" @click="time = 5000">5s</button>
+                        <button class="time-btn" :class="time == 10000 ? 'active' : ''" @click="time = 10000">10s</button>
+                        <button class="time-btn" :class="time == 20000 ? 'active' : ''" @click="time = 20000">20s</button>
+                    </div>
+                </CardHeader>
+                <div class="chart-placeholder">
+                    <Chart :temperature="temperature" :humidity="humidity" :steam="steam" :light="light" :soil="soil"
+                        :water="water" />
                 </div>
-                <div class="time-selector">
-                    <button class="time-btn" :class="time == 1000 ? 'active' : ''" @click="time = 1000">1s</button>
-                    <button class="time-btn" :class="time == 5000 ? 'active' : ''" @click="time = 5000">5s</button>
-                    <button class="time-btn" :class="time == 10000 ? 'active' : ''" @click="time = 10000">10s</button>
-                    <button class="time-btn" :class="time == 20000 ? 'active' : ''" @click="time = 20000">20s</button>
+            </Card>
+            <!-- 3D Model Placeholder -->
+            <Card>
+                <CardHeader>
+                        <CardTitle>Visualização 3D</CardTitle>
+                </CardHeader>
+                <div class="model-3d-container">
+                    <Model3d />
                 </div>
-            </div>
-            <div class="chart-placeholder">
-                <Chart :temperature="temperature" :humidity="humidity"
-      :steam="steam" :light="light" :soil="soil" :water="water"/>
-            </div>
-        </div>
-
-        <!-- 3D Model Placeholder -->
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">
-                    Visualização 3D
-                </div>
-            </div>
-            <div class="model-3d-container">
-                <Model3d />
-            </div>
-        </div>
-    </div>
+            </Card>
+    </Grid>
 </template>
 
 <style scoped>
-.charts-grid {
-    display: grid;
-    grid-template-columns: .5fr 1.5fr 1fr;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.card {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(27, 154, 170, 0.1);
-}
-
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #1B9AAA;
-}
-
 .button-list {
     list-style: none;
     display: flex;

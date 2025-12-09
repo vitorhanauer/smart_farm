@@ -3,7 +3,8 @@ defineProps({
     name: String,
     occupation: String,
     course: String,
-    image: String
+    image: String,
+    url: String
 });
 </script>
 
@@ -14,7 +15,7 @@ defineProps({
             <h3>{{ name }}</h3>
             <p>{{ occupation }}</p>
             <p>{{ course }}</p>
-            <a href="">Ver Curriculo</a>
+            <a :href="'/curriculos/' + url" target="_blank">Ver Curriculo</a>
         </div>
     </div>
 </template>

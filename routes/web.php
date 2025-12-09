@@ -56,6 +56,10 @@ Route::middleware(AuthMiddleware::class)->group(function () {
         Route::get('/equipe', function () {
             return Inertia::render('Team');
         })->name('team');;
+
+        Route::get('/curriculos/{page}', function (string $page) {
+            return view($page);
+        });
     });
 
 });

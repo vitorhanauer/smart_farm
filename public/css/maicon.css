@@ -1,0 +1,267 @@
+/* ===================== TODO-01: tokens e reset básico (bora setar a “cara” do site) ===================== */
+:root{
+  --brand:#ff6a2a;          /* cor principal (laranja) */
+  --brand-2:#ff8f5b;        /* variação */
+  --ink:#0f172a;            /* texto base */
+  --muted:#f6f7fb;          /* fundo suave */
+  --panel:#171a21;          /* painel escuro (hobbies) */
+  --panel-ink:#e6e8ee;      /* texto claro pro painel */
+  --stroke:#e6e8f0;         /* borda discreta */
+  --bg-grad: linear-gradient(135deg,#f6f7ff 0%,#f1f4ff 100%);
+  --shadow: 0 14px 48px rgba(16,24,40,.08);
+  --radius: 16px;
+}
+
+/* paleta alternativa (AZUL) – ativa com <html class="theme-blue"> */
+.theme-blue:root{
+  --brand:#2563eb;      /* azul principal */
+  --brand-2:#60a5fa;    /* azul claro */
+  --bg-grad: linear-gradient(135deg,#f6f9ff 0%,#eef4ff 100%);
+}
+
+*{ box-sizing:border-box }
+html{ scroll-behavior:smooth }
+body{
+  /* ===================== TODO-02: tipografia base + fundo com um gradiente maroto ===================== */
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  color:var(--ink);
+  background: var(--bg-grad);
+  line-height:1.6;
+}
+
+/* ===================== TODO-03: acessibilidade do jeitinho – skip link e foco visível ===================== */
+.skip-link{ position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden; }
+.skip-link:focus{
+  position:fixed; left:16px; top:16px; width:auto; height:auto; padding:8px 12px;
+  background:#111827; color:#fff; border-radius:8px; z-index:9999;
+}
+:focus-visible{ outline:3px solid #38bdf8; outline-offset:3px; border-radius:8px; }
+
+/* ===================== TODO-04: faixa vertical só pra dar aquele “acabamento” ===================== */
+.page-accent-left{ position:fixed; left:0; top:0; bottom:0; width:14px; background: var(--brand); z-index:-1; }
+
+/* ===================== TODO-05: container central responsivo e com sombra de respeito ===================== */
+.container{
+  max-width:1100px; margin:40px auto; background:#fff; border-radius:var(--radius);
+  box-shadow: var(--shadow); overflow:hidden;
+}
+
+/* ===================== TODO-06: grid principal – duas colunas no desktop ===================== */
+.grid-principal{
+  display:grid; grid-template-columns: 340px 1fr; gap:24px; padding:22px 26px 28px;
+}
+
+/* ===================== TODO-07: header em grid (foto + infos) ===================== */
+.cabecalho{
+  display:grid; grid-template-columns: 260px 1fr; gap:24px;
+  background: linear-gradient(135deg, #ffffff 50%, #fff4ee 100%);
+  padding:26px 26px 8px 26px; align-items:center;
+  border-bottom: 4px solid var(--brand);
+}
+.theme-blue .cabecalho{ background: linear-gradient(135deg,#ffffff 50%, #f3f7ff 100%); }
+
+/* ===================== TODO-08: foto com “anel” circular (fica moderno e chama atenção) ===================== */
+.foto-hero{ display:flex; justify-content:center; align-items:center; }
+.foto-ring{
+  width: 220px; height: 220px; border-radius: 50%;
+  display:grid; place-items:center;
+  background: conic-gradient(from 220deg, var(--brand) 0 25%, #ffffff 0 35%, var(--brand-2) 0 60%, #ffffff 0 70%, var(--brand) 0 100%);
+  padding:6px;
+}
+.foto-perfil{
+  width: 100%; height: 100%; border-radius:50%; object-fit:cover;
+  border:4px solid #fff; box-shadow: 0 10px 34px rgba(0,0,0,.10);
+}
+
+/* ===================== TODO-09: tipografia das informações principais ===================== */
+.nome-completo{ font-size: clamp(1.8rem, 1.2rem + 2.2vw, 3rem); margin:0; letter-spacing:.3px; }
+.subtitulo{ margin:.25rem 0 1rem; font-weight:600; color:#475569 }
+
+/* ===================== TODO-10: títulos com “ribbon” (tarja) pra organizar visual ===================== */
+.ribbon-title{
+  --skew: -10deg;
+  display:inline-block; margin:.5rem 0 1rem; color:#fff; font-size:1.05rem;
+  transform: skewX(var(--skew));
+  background: var(--brand);
+  padding:8px 16px; border-radius:10px;
+  box-shadow: 0 6px 18px color-mix(in oklab, var(--brand), transparent 70%);
+}
+.ribbon-title span{ display:inline-block; transform: skewX(calc(-1*var(--skew))); }
+
+/* ===================== TODO-11: linha de contatos (com LinkedIn/WhatsApp/Maps clicáveis) ===================== */
+.contatos-inline{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+.contatos-inline .sep{ opacity:.5 }
+
+/* ===================== TODO-12: sidebar sticky – fica no topo enquanto rola ===================== */
+.coluna-esquerda{
+  position: sticky;
+  top: 16px;
+  height: fit-content;
+}
+
+/* blocos da sidebar */
+.secao-bloco{
+  background:#fff; border:1px solid var(--stroke); border-radius:14px;
+  padding:16px; margin-bottom:16px;
+}
+
+/* ===================== TODO-13: título de seção com uma barrinha embaixo ===================== */
+.sec-title{
+  font: 700 1.05rem/1.2 Inter, sans-serif; margin:0 0 .75rem; position:relative;
+}
+.sec-title::after{
+  content:""; position:absolute; left:0; bottom:-8px; width:36px; height:3px; background:var(--brand); border-radius:2px;
+}
+
+/* ===================== TODO-14: Habilidades – chips clicáveis com vibe de botão ===================== */
+.chips{ display:flex; flex-wrap:wrap; gap:8px; }
+.chip{
+  display:inline-flex; align-items:center; gap:8px;
+  background:#fff7f3; color:#4a2a1d; border:1px solid #ffd5c1;
+  padding:6px 12px; border-radius:999px;
+  font-weight:700; font-size:.86rem;
+  text-decoration:none; cursor:pointer;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+  position:relative;
+}
+.theme-blue .chip{ background:#f3f7ff; color:#113362; border-color:#cfe0ff; }
+.chip:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px color-mix(in oklab, var(--brand), transparent 80%);
+  background:#fff2ea; border-color:#ffc7ae;
+}
+.theme-blue .chip:hover{ background:#eaf1ff; border-color:#bcd3ff; }
+.chip::after{
+  content:"↗"; font-size:.8rem; line-height:1; opacity:0; transform: translateY(-1px);
+  transition: opacity .15s ease; margin-left:2px;
+}
+.chip:hover::after, .chip:focus-visible::after{ opacity:.65; }
+.chip:focus-visible{ outline:3px solid #38bdf8; outline-offset:2px; }
+.chip-icon{ display:inline-flex; width:18px; height:18px; }
+.chip-icon svg{ width:18px; height:18px; display:block; }
+
+/* ===================== TODO-15: Idiomas – barra de progresso simples e limpa ===================== */
+.idioma{ display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:center; }
+.bar{ height:6px; background:#e2e8f0; border-radius:999px; overflow:hidden; }
+.bar-fill{ height:100%; background: linear-gradient(90deg,var(--brand),var(--brand-2)); }
+
+/* ===================== TODO-16: Hobbies – painel escuro com listinha vertical ===================== */
+.hobbies-panel{
+  background: var(--panel); color: var(--panel-ink);
+  border-radius:14px; padding:16px; border:1px solid rgba(255,255,255,.08);
+}
+.panel-title{
+  font:700 1.05rem/1.2 Inter, sans-serif; margin:0 0 12px;
+  letter-spacing:.2px; text-transform:uppercase;
+}
+.hobbies-list{ display:flex; flex-direction:column; gap:14px; list-style:none; padding:0; margin:0; }
+.hobbie{
+  display:grid; grid-template-columns: 50px 1fr; align-items:center; gap:12px;
+  padding:10px 8px; border-radius:12px;
+  background: rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.08);
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+.hobbie:hover{ transform: translateY(-1px); background: rgba(255,255,255,.05); }
+.icon{
+  width:50px; height:50px; display:grid; place-items:center;
+  border-radius:50%; border:1.6px solid rgba(255,255,255,.65);
+  font-size: 24px; color:#fff;
+}
+.label{ font-weight:600; color:#e9edf6; letter-spacing:.2px; }
+
+/* ===================== TODO-17: Seções à direita + timeline ===================== */
+.secao-conteudo{ margin-bottom:22px; }
+.timeline{ position:relative; padding-left:26px; }
+.timeline::before{
+  content:""; position:absolute; left:10px; top:.4rem; bottom:.4rem; width:2px;
+  background: linear-gradient(to bottom, var(--brand), #e5e7eb);
+}
+
+/* ===================== TODO-18: item da timeline com “bolinha” ===================== */
+.timeline-item{ position:relative; margin-bottom:16px; }
+.dot{
+  position:absolute; left:4px; top:10px; width:14px; height:14px; border-radius:50%;
+  background: var(--brand); border:3px solid #fff; box-shadow:0 0 0 3px #e5e7eb;
+}
+
+/* ===================== TODO-19: card de conteúdo com borda colorida e sombra leve ===================== */
+.card{
+  background:#fff; border-left:4px solid var(--brand);
+  border:1px solid var(--stroke); border-radius:14px;
+  box-shadow: 0 6px 20px rgba(16,24,40,.05);
+  padding:14px 16px;
+}
+.cargo{ margin:0; font-weight:800; }
+.empresa{ margin:.15rem 0; color:#334155; font-weight:600; }
+.periodo{ margin:.15rem 0 .5rem; color:#64748b; font-style:italic; }
+.card ul{ margin:0; padding-left:18px; }
+.card li{ margin:.25rem 0; }
+.card li::marker{ color: var(--brand); }
+
+/* ===================== TODO-20: Projetos – grid responsivo ===================== */
+.projetos-grid{ display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+.proj-card{
+  background:#fff; border:1px solid var(--stroke); border-radius:14px;
+  padding:14px 16px; box-shadow: 0 6px 20px rgba(16,24,40,.05);
+}
+.proj-title{ margin:0 0 .25rem; font-weight:800; }
+
+/* ===================== TODO-21: Formação – marcador colorido + badges ===================== */
+.lista-formacao{ padding-left:18px; }
+.lista-formacao li::marker{ color: var(--brand); }
+/* badges de status — bem diretas */
+.badge{
+  display:inline-block; padding:2px 8px; border-radius:999px;
+  font-size:.78rem; font-weight:700; letter-spacing:.2px;
+}
+.badge-progresso{ background:#fff3cd; color:#8a6d3b; border:1px solid #ffe7a3; }
+.badge-estudo{   background:#e0f2fe; color:#075985; border:1px solid #bae6fd; }
+.badge-ok{       background:#dcfce7; color:#065f46; border:1px solid #bbf7d0; }
+
+/* ===================== TODO-22: Rodapé com botão de ação (Salvar PDF) ===================== */
+.rodape{ background:#0f172a; color:#e5e7eb; text-align:center; padding:16px; }
+.btn-print{
+  margin-top:10px; padding:10px 14px; border-radius:10px; border:0;
+  background: var(--brand); color:#fff; font-weight:700; cursor:pointer;
+  display:inline-flex; align-items:center; gap:8px;
+  transition: filter .2s ease, transform .1s ease;
+}
+.btn-print:hover{ filter: brightness(1.08); transform: translateY(-1px); }
+.btn-print:active{ transform: translateY(0); }
+
+/* ===================== TODO-23: Responsividade — quebra pra 1 coluna ===================== */
+@media (max-width: 980px){
+  .cabecalho{ grid-template-columns:1fr; text-align:center; }
+  .grid-principal{ grid-template-columns:1fr; }
+}
+
+/* ===================== TODO-24: Ajustes finos no mobile (espaço/legibilidade) ===================== */
+@media (max-width: 640px){
+  .container{ margin:16px auto; }
+  .ribbon-title{ font-size:1rem; }
+}
+
+/* ===================== TODO-25: Impressão A4 — limpa fundos e evita quebras feias ===================== */
+@media print{
+  @page{ size:A4; margin:14mm }
+  body{ background:#fff }
+  .page-accent-left{ display:none }
+  .container{ box-shadow:none; border-radius:0 }
+  .cabecalho{ border-bottom:2px solid var(--brand); }
+  .hobbies-panel, .proj-card, .card{ break-inside:avoid }
+  .btn-print, .skip-link{ display:none !important; }
+}
+
+/* ===================== TODO-26: Dark mode — ativa sozinho pelo sistema ===================== */
+@media (prefers-color-scheme: dark){
+  :root{ --bg-grad: radial-gradient(1200px 600px at 10% 10%, #0e1018, #0a0c12); --stroke:#223047; }
+  .container{ background:#0b1220; }
+  .cabecalho{ background: linear-gradient(135deg,#0b1220 50%, #151b27 100%); border-bottom-color:#2a3345; }
+  .nome-completo, .subtitulo{ color:#e9edf6 }
+  .resumo-profissional, .contatos-inline{ color:#cbd5e1 }
+  .secao-bloco{ background:#0b1220; border-color:#223047; }
+  .chip{ background:#1c2433; color:#f0f4ff; border-color:#293248; }
+  .proj-card, .card{ background:#0b1220; border-color:#223047; }
+  .lista-formacao li{ color:#e9edf6 }
+}

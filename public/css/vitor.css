@@ -1,0 +1,322 @@
+/*
+========================= TEMPLATE DE CURRÍCULO COM CSS EXTERNO =========================
+Instruções para os alunos:
+1) Complete os TODOs numerados em ordem sequencial
+2) Use as sugestões fornecidas nos comentários
+3) Teste cada seção antes de passar para a próxima
+4) Mantenha a organização e indentação do código
+5) Experimente com as cores e espaçamentos sugeridos
+===========================================================================
+GUIA RÁPIDO DE PROPRIEDADES CSS:
+- Layout: display, position, flex, grid, width, height, margin, padding
+- Texto: font-family, font-size, font-weight, color, text-align, line-height
+- Visual: background, border, border-radius, box-shadow, opacity
+- Posicionamento: top, right, bottom, left, z-index
+- Flexbox: justify-content, align-items, flex-direction, gap
+- Grid: grid-template-columns, grid-gap, grid-area
+===========================================================================
+*/
+
+/* ===================== TODO-01: RESET E BASE ===================== */
+/*Importação da font Roboto*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+/*Criação de variáveis para utilizar no restante do CSS*/
+:root{
+   --font-primary: "Roboto", sans-serif;
+   --color-primary: #086400;
+   --color-secondary: #0c8f00;
+   --color-tertiary: #10b981;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font-primary); }
+body { background: linear-gradient(135deg, var(--color-tertiary) 0%, var(--color-secondary) 100%); }
+body { color: #2d3748; line-height: 1.6; min-height: 100vh; }
+
+/* ===================== TODO-02: CONTAINER PRINCIPAL ===================== */
+
+.container { max-width: 1200px; margin: 20px auto; padding: 20px; }
+.container { background: #ffffff; border-radius: 20px; }
+.container { box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); }
+.container { min-height: calc(100vh - 40px); }
+
+/* ===================== TODO-03: CABEÇALHO PRINCIPAL ===================== */
+.cabecalho { display: flex; align-items: center; gap: 30px; }
+.cabecalho { background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); }
+.cabecalho { color: white; padding: 40px; border-radius: 15px; }
+.cabecalho { margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+
+/* ===================== TODO-04: FOTO DE PERFIL ===================== */
+.foto-container { flex-shrink: 0; }
+.foto-perfil { width: 180px; height: 180px; border-radius: 50%; }
+.foto-perfil { border: 4px solid rgba(255, 255, 255, 0.3); }
+.foto-perfil { object-fit: cover; transition: transform 0.3s ease; }
+.foto-perfil:hover { transform: scale(1.05); }
+
+/* ===================== TODO-05: INFORMAÇÕES PRINCIPAIS ===================== */
+
+.info-principal { flex: 1; }
+.nome-completo { font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; }
+.cargo-objetivo { font-size: 1.3rem; font-weight: 400; opacity: 0.9; margin-bottom: 15px; }
+.resumo-profissional { font-size: 1rem; opacity: 0.8; line-height: 1.6; }
+
+/* ===================== TODO-06: GRID PRINCIPAL ===================== */
+
+.grid-principal { display: grid; grid-template-columns: 350px 1fr; gap: 30px; }
+.grid-principal { margin-bottom: 30px; }
+
+
+@media (max-width: 968px) {
+   .grid-principal { grid-template-columns: 1fr; }
+}
+
+
+/* ===================== TODO-07: COLUNA ESQUERDA (SIDEBAR) ===================== */
+.coluna-esquerda { background: #f8fafc; padding: 25px; border-radius: 15px; }
+.coluna-esquerda { border-left: 4px solid var(--color-tertiary); }
+.coluna-esquerda { height: fit-content; position: sticky; top: 20px; }
+
+/*Correção do bug que a coluna da esquerda se move junto quando a tela diminui o tamanho*/
+@media (max-width: 968px){
+   .coluna-esquerda{
+      position: relative;
+   }
+}
+
+/* ===================== TODO-08: TÍTULOS DAS SEÇÕES ===================== */
+.titulo-secao { display: flex; align-items: center; gap: 10px; }
+.titulo-secao { font-size: 1.2rem; font-weight: 600; color: var(--color-primary); }
+.titulo-secao { margin-bottom: 15px; padding-bottom: 8px; }
+.titulo-secao { border-bottom: 2px solid #e2e8f0; }
+
+.icone { font-size: 1.1rem; }
+
+
+
+/* ===================== TODO-09: SEÇÃO DE CONTATO ===================== */
+.secao-contato { margin-bottom: 25px; }
+.lista-contato { display: flex; flex-direction: column; gap: 8px; }
+.item-contato { display: flex; flex-direction: column; }
+.label { font-size: 0.85rem; font-weight: 600; color: #64748b; }
+.link-contato { color: var(--color-secondary); text-decoration: none; font-weight: 500; }
+.link-contato:hover { text-decoration: underline; }
+.valor { color: #3f3f3f; font-weight: 500; }
+
+
+
+/* ===================== TODO-10: HABILIDADES TÉCNICAS ===================== */
+.secao-habilidades { margin-bottom: 25px; }
+.grid-habilidades { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip-habilidade { background: linear-gradient(135deg, var(--color-secondary), var(--color-primary)); }
+.chip-habilidade { color: white; padding: 6px 12px; border-radius: 20px; }
+.chip-habilidade { font-size: 0.85rem; font-weight: 500; }
+.chip-habilidade { transition: transform 0.2s ease; }
+.chip-habilidade:hover { transform: translateY(-2px); }
+
+
+/* ===================== TODO-11: SEÇÃO DE IDIOMAS ===================== */
+
+.secao-idiomas { margin-bottom: 25px; }
+.lista-idiomas { display: flex; flex-direction: column; gap: 12px; }
+.item-idioma { display: flex; align-items: center; gap: 10px; }
+.nome-idioma { min-width: 70px; font-weight: 500; font-size: 0.9rem; }
+
+.barra-nivel { flex: 1; height: 6px; background: #e2e8f0; border-radius: 3px; overflow: hidden; }
+.nivel { height: 100%; transition: width 0.3s ease; }
+.nivel-nativo { width: 100%; background: #10b981; }
+.nivel-avancado { width: 85%; background: #3b82f6; }
+.nivel-intermediario { width: 65%; background: #f59e0b; }
+.nivel-basico { width: 25%; background: #f50b0b; }
+
+.texto-nivel { font-size: 0.8rem; color: #64748b; min-width: 80px; }
+
+
+
+/* ===================== TODO-12: CERTIFICAÇÕES ===================== */
+/* .secao-certificacoes { margin-bottom: 25px; }
+.lista-certificacoes { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.item-certificacao { display: flex; justify-content: space-between; align-items: center; }
+.item-certificacao { padding: 8px; background: white; border-radius: 8px; }
+.item-certificacao { border-left: 3px solid #10b981; }
+.data-cert { font-size: 0.85rem; color: #64748b; font-weight: 600; } */
+
+/* ===================== TODO-13: COLUNA DIREITA (CONTEÚDO PRINCIPAL) ===================== */
+.coluna-direita { display: flex; flex-direction: column; gap: 30px; }
+
+/* ===================== TODO-14: TÍTULOS PRINCIPAIS ===================== */
+.titulo-secao-principal { display: flex; align-items: center; gap: 12px; }
+.titulo-secao-principal { font-size: 1.5rem; font-weight: 700; color: var(--color-primary); }
+.titulo-secao-principal { margin-bottom: 20px; padding-bottom: 10px; }
+.titulo-secao-principal { border-bottom: 3px solid var(--color-primary); }
+.icone-principal { font-size: 1.3rem; }
+
+
+/* ===================== TODO-15: TIMELINE DE EXPERIÊNCIA ===================== */
+
+.timeline-experiencia { position: relative; padding-left: 25px; }
+.timeline-experiencia::before {
+   content: '';
+   position: absolute;
+   left: 10px;
+   top: 0;
+   bottom: 0;
+   width: 2px;
+   background: linear-gradient(to bottom, var(--color-secondary), #e4e4e4);
+}
+
+.item-experiencia { position: relative; margin-bottom: 25px; }
+.marcador-timeline {
+   position: absolute;
+   left: -19px;
+   top: 5px;
+   width: 12px;
+   height: 12px;
+   background: var(--color-secondary);
+   border-radius: 50%;
+   border: 3px solid white;
+   box-shadow: 0 0 0 3px #e4e4e4;
+}
+
+
+
+/* ===================== TODO-16: CONTEÚDO DE EXPERIÊNCIA ===================== */
+.conteudo-experiencia { background: white; padding: 20px; border-radius: 12px; }
+.conteudo-experiencia { border-left: 4px solid var(--color-tertiary); }
+.conteudo-experiencia { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); }
+.conteudo-experiencia { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.conteudo-experiencia:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(5, 148, 0, 0.527); cursor: pointer; }
+
+.cabecalho-experiencia { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.cargo { font-size: 1.1rem; font-weight: 600; color: #1e293b; margin: 0; }
+.empresa { font-size: 0.95rem; color: var(--color-primary); font-weight: 500; }
+.periodo { color: #64748b; font-size: 0.9rem; margin-bottom: 12px; font-style: italic; }
+
+
+
+/* ===================== TODO-17: LISTAS E TAGS DE TECNOLOGIA ===================== */
+.responsabilidades { margin: 12px 0; padding-left: 18px; }
+.responsabilidades li { margin-bottom: 6px; color: #374151; }
+.responsabilidades li::marker { color: var(--color-primary); }
+
+.descricao-simples { color: #374151; margin: 10px 0; }
+
+.tags-tecnologias { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tag-tech { background: #e9feee; color: var(--color-primary); padding: 4px 8px; }
+.tag-tech { border-radius: 12px; font-size: 0.8rem; font-weight: 500; }
+
+
+
+/* ===================== TODO-18: FORMAÇÃO ACADÊMICA ===================== */
+.lista-formacao { display: flex; flex-direction: column; gap: 15px; }
+.item-formacao { display: flex; justify-content: space-between; align-items: center; }
+.item-formacao { background: white; padding: 18px; border-radius: 12px; }
+.item-formacao { border-left: 4px solid #10b981; }
+.item-formacao { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); }
+
+.info-curso { flex: 1; }
+.nome-curso { font-size: 1.1rem; font-weight: 600; color: #1e293b; margin-bottom: 4px; }
+.instituicao { color: var(--color-primary); font-weight: 500; margin-bottom: 2px; }
+.periodo-curso { color: #64748b; font-size: 0.9rem; }
+
+
+/* ===================== TODO-19: BADGES DE STATUS ===================== */
+.status-curso { display: flex; align-items: center; }
+.badge-concluido, .badge-cursando { padding: 6px 12px; border-radius: 20px; }
+.badge-concluido, .badge-cursando { font-size: 0.8rem; font-weight: 600; }
+
+.badge-concluido { background: #d1fae5; color: #065f46; }
+.badge-cursando { background: #fef3c7; color: #92400e; }
+
+
+
+/* ===================== TODO-20: PROJETOS DESTACADOS ===================== */
+.grid-projetos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+
+.card-projeto { background: white; padding: 20px; border-radius: 12px; }
+.card-projeto { border-top: 4px solid var(--color-tertiary); }
+.card-projeto { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); }
+.card-projeto { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.card-projeto:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); }
+
+.nome-projeto { font-size: 1.1rem; font-weight: 600; color: #1e293b; margin-bottom: 8px; }
+.descricao-projeto { color: #374151; margin-bottom: 12px; line-height: 1.5; }
+
+/* ===================== TODO-21: TECNOLOGIAS E LINKS DOS PROJETOS ===================== */
+.tecnologias-projeto { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px; }
+.tech-tag { background: #f3f4f6; color: #374151; padding: 4px 8px; }
+.tech-tag { border-radius: 12px; font-size: 0.8rem; font-weight: 500; }
+
+.links-projeto { display: flex; gap: 10px; }
+.link-projeto { color: var(--color-primary); text-decoration: none; font-weight: 500; }
+.link-projeto { padding: 6px 12px; border: 1px solid var(--color-primary); border-radius: 6px; }
+.link-projeto { transition: background-color 0.2s ease, color 0.2s ease; }
+.link-projeto:hover { background: var(--color-primary); color: white; }
+
+
+
+/* ===================== TODO-22: RODAPÉ COM AÇÕES ===================== */
+.rodape { background: linear-gradient(135deg, #1e293b, #374151); }
+.rodape { color: white; padding: 30px; border-radius: 15px; text-align: center; }
+
+.acoes-curriculo { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
+.acoes-curriculo { flex-wrap: wrap; }
+
+
+
+/* ===================== TODO-23: BOTÕES DE AÇÃO ===================== */
+.btn-acao { display: inline-flex; align-items: center; gap: 8px; }
+.btn-acao { padding: 12px 20px; border-radius: 8px; text-decoration: none; }
+.btn-acao { font-weight: 600; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+
+.btn-primario { background: var(--color-primary); color: white; }
+.btn-primario:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(70, 229, 91, 0.4); }
+
+.btn-secundario { background: transparent; color: white; border: 2px solid rgba(255, 255, 255, 0.3); }
+.btn-secundario:hover { background: rgba(255, 255, 255, 0.1); }
+
+.icone-btn { font-size: 1rem; }
+
+
+/* ===================== TODO-24: INFORMAÇÕES DO RODAPÉ ===================== */
+.info-rodape { border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 15px; }
+.info-rodape p { margin: 5px 0; opacity: 0.8; }
+.atualizacao { font-size: 0.85rem; font-style: italic; }
+
+/* ===================== TODO-25: RESPONSIVIDADE ===================== */
+@media (max-width: 968px) {
+   .grid-principal { grid-template-columns: 1fr; }
+   .cabecalho { flex-direction: column; text-align: center; }
+   .acoes-curriculo { flex-direction: column; align-items: center; }
+}
+
+@media (max-width: 640px) {
+   .container { margin: 10px; padding: 15px; }
+   .nome-completo { font-size: 2rem; }
+   .cabecalho { padding: 25px; }
+   .btn-acao { width: 100%; justify-content: center; }
+}
+
+/* ===================== TODO-26: ANIMAÇÕES E EFEITOS ESPECIAIS ===================== */
+@keyframes fadeInUp {
+   from { opacity: 0; transform: translateY(20px); }
+   to { opacity: 1; transform: translateY(0); }
+}
+
+.container { animation: fadeInUp 0.6s ease-out; }
+
+/*
+=========================== DICAS PARA OS ALUNOS ===========================
+1. Complete os TODOs na ordem numerada para melhor aprendizado
+2. Teste cada seção no navegador antes de continuar
+3. Experimente modificar cores usando ferramentas como https://coolors.co
+4. Use o DevTools do navegador (F12) para debug
+5. Mantenha a consistência visual entre seções
+6. Não tenha medo de experimentar com as propriedades sugeridas
+7. Adicione suas próprias ideias depois de completar todos os TODOs
+
+RECURSOS ÚTEIS:
+- MDN Web Docs: https://developer.mozilla.org/pt-BR/docs/Web/CSS
+- CSS Tricks: https://css-tricks.com
+- Flexbox Guide: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+- Grid Guide: https://css-tricks.com/snippets/css/complete-guide-grid/
+============================================================================
+*/
