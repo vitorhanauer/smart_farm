@@ -17,6 +17,8 @@ composer install
 npm install
 ```
 
+*Provavelmente ao rodar composer install irá aparecer alguns erros de falta de depedência, instale as depêndencias que for necessárias.
+
 Copie o arquivo .env.example para .env e configure corretamente o IP da Smart Farm, após isso rode os seguintes comandos:
 
 
@@ -26,5 +28,11 @@ php artisan migrate --seed
 php artisan schedule:work
 composer run dev
 ```
+
+Duas contas já vem criadas com a aplicação:
+- student@example.com
+- teacher@example.com
+
+A senha de ambas é password
 
 Após isso basta acessar https://localhost:8000/
